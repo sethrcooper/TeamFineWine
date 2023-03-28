@@ -7,6 +7,7 @@ import math
 import statistics
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 
 # constants
@@ -24,7 +25,7 @@ def getData(path = ORIGINAL_DATASET):
         print("[ERROR] COIN COLOR DATA FILE NOT FOUND")
         return None
 
-    return pd.read_excel(path, index_col=0, dtype=ORIGINAL_DATA_COLUMNS)
+    return pd.read_excel(path, dtype=ORIGINAL_DATA_COLUMNS)
 
 
 # main program execution
@@ -33,9 +34,9 @@ def main():
 
     df = getData()
     X = np.array(df.iloc[:, 0:11].values)
-    Y = np.array(df.iloc[:, 11].values)
+    y = np.array(df.iloc[:, 11].values)
 
-    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 
     #print(outputData)  
 
