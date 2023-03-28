@@ -13,7 +13,6 @@ from sklearn.model_selection import train_test_split
 # constants
 ORIGINAL_DATASET = "WineQT.xlsx"
 
-
 ORIGINAL_DATA_COLUMNS = { "fixed acidity": float,	"volatile acidity": float,	"citric acid": float,	"residual sugar": float,
                     "chlorides": float,	"free sulfur dioxide": float,	"total sulfur dioxide": float,	"density": float,	"pH": float,
                     "sulphates": float,	"alcohol": float,	"quality": float, "Id": float}
@@ -32,13 +31,16 @@ def getData(path = ORIGINAL_DATASET):
 def main():
     print("\n[INFO] BEGINNING MAIN FUNCTION\n")    # program status update
 
+    # Load data from excel
     df = getData()
+    #split into features and results
     X = np.array(df.iloc[:, 0:11].values)
     y = np.array(df.iloc[:, 11].values)
-
+    # split the dataset into a training and testing portion for validation purposes
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 
-    #print(outputData)  
+    ## TODO ## Implement ML Algorithms in their own functions as seen with getData() above and call them below
+
 
     print("\n[INFO] ENDING MAIN FUNCTION\n")    # program status update
 
