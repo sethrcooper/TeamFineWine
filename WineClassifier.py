@@ -46,12 +46,6 @@ def main():
     # TODO ## Implement ML Algorithms in their own functions as seen with getData() above and call them below
     print(cnn())
 
-    nb_params = {}
-    nb_model = naive_bayes_train(X_train.T, y_train, nb_params)
-    nb_train_predictions = naive_bayes_predict(X_train.T, nb_model)
-    nb_train_accuracy = np.mean(nb_train_predictions == y_train)
-    print("Naive Bayes training accuracy: %f" % nb_train_accuracy)
-
     nb_test_predictions = naive_bayes_predict(X_test.T, nb_model)
     nb_test_accuracy = np.mean(nb_test_predictions == y_test)
     print("Naive Bayes testing accuracy: %f" % nb_test_accuracy)
