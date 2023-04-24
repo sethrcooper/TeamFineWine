@@ -1,5 +1,9 @@
 # Team Fine Wine
 
+```
+pip install -r requirements.txt
+```
+
 ## Naive Bayes
 
 ### Training
