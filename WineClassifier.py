@@ -8,7 +8,7 @@ import statistics
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from cnn import cnn
+from cnn.cnn import cnn
 from naive_bayes import *
 
 
@@ -44,7 +44,8 @@ def main():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 
     # TODO ## Implement ML Algorithms in their own functions as seen with getData() above and call them below
-    print(cnn())
+    model_path = os.getcwd() + '\\cnn\\cnn.h5'
+    print("Final Testing Accuracy: ", cnn(df, model_path))
 
     nb_params = {}
     nb_model = naive_bayes_train(X_train.T, y_train, nb_params)
