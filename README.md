@@ -8,7 +8,14 @@ pip install -r requirements.txt
 
 ### Training
 
+1. Navigate to naive_bayes_test.ipynb
+2. Run all cells
+
 ### Testing
+
+1. Navigate to WineClassifier.py
+2. Execute WineClassifier.py
+3. View results in console
 
 ## CNN
 
