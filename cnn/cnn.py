@@ -5,11 +5,7 @@ from tensorflow.python.keras import layers, models
 import tensorflow as tf
 
 
-def cnn(df, model_path):
-    X = np.array(df.iloc[:, 0:11].values)
-    y = np.array(df.iloc[:, 11].values)
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
+def cnn(X_test, y_test, model_path):
 
     X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1, 1))
 

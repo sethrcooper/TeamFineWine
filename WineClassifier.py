@@ -46,12 +46,12 @@ def main():
 
     # TODO ## Implement ML Algorithms in their own functions as seen with getData() above and call them below
     model_path = os.getcwd() + '\\cnn\\cnn.h5'
-    print("Final Testing Accuracy: ", cnn(df, model_path))
+    print("Final Testing Accuracy: ", cnn(X_test, y_test, model_path))
 
     with open('save_nb_model.txt', 'rb') as f:
         nb_model = pickle.load(f)
     nb_test_predictions = naive_bayes_predict(X_test.T, nb_model)
-    nb_test_accuracy = np.mean(nb_test_predictions == y_test)
+    nb_test_accuracy = np.mean(nb_test_predictions == (y_test - 3))
     print("Naive Bayes testing accuracy: %f" % nb_test_accuracy)
 
     print("\n[INFO] ENDING MAIN FUNCTION\n")    # program status update
