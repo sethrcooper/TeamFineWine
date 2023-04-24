@@ -5,6 +5,7 @@
 import os
 import math
 import statistics
+import pickle
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -47,6 +48,8 @@ def main():
     model_path = os.getcwd() + '\\cnn\\cnn.h5'
     print("Final Testing Accuracy: ", cnn(df, model_path))
 
+    with open('save_nb_model.txt', 'rb') as f:
+        nb_model = pickle.load(f)
     nb_test_predictions = naive_bayes_predict(X_test.T, nb_model)
     nb_test_accuracy = np.mean(nb_test_predictions == y_test)
     print("Naive Bayes testing accuracy: %f" % nb_test_accuracy)
