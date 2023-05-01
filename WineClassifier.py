@@ -5,11 +5,12 @@
 import os
 import math
 import statistics
+import pickle
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from cnn import cnn
+from cnn.cnn import cnn
 from naive_bayes import *
 from MLR import *
 
@@ -48,16 +49,13 @@ def main():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 
     # TODO ## Implement ML Algorithms in their own functions as seen with getData() above and call them below
-    print(cnn())
+    model_path = os.getcwd() + '\\cnn\\cnn.h5'
+    print("Final Testing Accuracy: ", cnn(X_test, y_test, model_path))
 
-    nb_params = {}
-    nb_model = naive_bayes_train(X_train.T, y_train, nb_params)
-    nb_train_predictions = naive_bayes_predict(X_train.T, nb_model)
-    nb_train_accuracy = np.mean(nb_train_predictions == y_train)
-    print("Naive Bayes training accuracy: %f" % nb_train_accuracy)
-
+    with open('save_nb_model.txt', 'rb') as f:
+        nb_model = pickle.load(f)
     nb_test_predictions = naive_bayes_predict(X_test.T, nb_model)
-    nb_test_accuracy = np.mean(nb_test_predictions == y_test)
+    nb_test_accuracy = np.mean(nb_test_predictions == (y_test - 3))
     print("Naive Bayes testing accuracy: %f" % nb_test_accuracy)
 
     multi_test_predictions, J = multi_logistic_regression(X_train, y_train, X_test)
