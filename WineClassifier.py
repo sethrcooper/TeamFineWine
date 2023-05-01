@@ -7,9 +7,12 @@ import math
 import statistics
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from cnn import cnn
 from naive_bayes import *
+from MLR import *
+
 
 
 # constants
@@ -29,6 +32,7 @@ def getData(path=ORIGINAL_DATASET):
         return None
 
     return pd.read_excel(path, dtype=ORIGINAL_DATA_COLUMNS)
+
 
 
 # main program execution
@@ -55,6 +59,12 @@ def main():
     nb_test_predictions = naive_bayes_predict(X_test.T, nb_model)
     nb_test_accuracy = np.mean(nb_test_predictions == y_test)
     print("Naive Bayes testing accuracy: %f" % nb_test_accuracy)
+
+    multi_test_predictions, J = multi_logistic_regression(X_train, y_train, X_test)
+    lr_test_accuracy = np.mean(np.round(multi_test_predictions) == y_test)
+    print("MLR testing accuracy: %f" % lr_test_accuracy)
+
+
 
     print("\n[INFO] ENDING MAIN FUNCTION\n")    # program status update
 
