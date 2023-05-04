@@ -58,9 +58,18 @@ def main():
     nb_test_accuracy = np.mean(nb_test_predictions == (y_test - 3))
     print("Naive Bayes testing accuracy: %f" % nb_test_accuracy)
 
-    multi_test_predictions, J = multi_logistic_regression(X_train, y_train, X_test)
+
+    # This function trains new weights based on this random train/test split
+    # multi_test_predictions, J, theta = multi_logistic_regression(X_train, y_train, X_test)
+    # this function uses constant weights as requested for the final project
+    multi_test_predictions = predictPreset(X_test)
+
     lr_test_accuracy = np.mean(np.round(multi_test_predictions) == y_test)
     print("MLR testing accuracy: %f" % lr_test_accuracy)
+    # print(theta)
+    # print(confusionMatrix(y_test, multi_test_predictions))
+    # plotCost(J)
+
 
 
 
